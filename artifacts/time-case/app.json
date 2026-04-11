@@ -1,0 +1,48 @@
+{
+  "expo": {
+    "name": "Depuis",
+    "slug": "time-case",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/images/icon.png",
+    "scheme": "depuis",
+    "userInterfaceStyle": "automatic",
+    "newArchEnabled": true,
+    "splash": {
+      "image": "./assets/images/icon.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#E8EAF6"
+    },
+    "ios": {
+      "supportsTablet": false,
+      "bundleIdentifier": "com.depuis.app"
+    },
+    "android": {
+      "package": "com.depuis.app",
+      "versionCode": 1,
+      "permissions": [],
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/images/icon.png",
+        "backgroundColor": "#E8EAF6"
+      }
+    },
+    "web": {
+      "favicon": "./assets/images/icon.png",
+      "title": "Depuis"
+    },
+    "plugins": [
+      [
+        "expo-router",
+        {
+          "origin": "https://replit.com/"
+        }
+      ],
+      "expo-font",
+      "expo-web-browser"
+    ],
+    "experiments": {
+      "typedRoutes": true,
+      "reactCompiler": true
+    }
+  }
+}
