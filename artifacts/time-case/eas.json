@@ -18,6 +18,27 @@
       "android": {
         "buildType": "app-bundle"
       }
+    },
+    "production-signed": {
+      "extends": "production",
+      "android": {
+        "buildType": "app-bundle",
+        "credentialsSource": "remote"
+      }
+    },
+    "production-signed-local": {
+      "extends": "production",
+      "android": {
+        "buildType": "app-bundle",
+        "credentialsSource": "local"
+      }
+    },
+    "preview-signed": {
+      "extends": "preview",
+      "android": {
+        "buildType": "apk",
+        "credentialsSource": "remote"
+      }
     }
   },
   "submit": {
