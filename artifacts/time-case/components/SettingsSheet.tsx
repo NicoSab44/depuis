@@ -1,3 +1,4 @@
+import Constants from "expo-constants";
 import React, { useMemo, useState } from "react";
 import {
   Modal,
@@ -118,6 +119,15 @@ export function SettingsSheet({ visible, onClose }: Props) {
           <Text style={styles.legalBtnText}>{t.legalNav}</Text>
           <Feather name="chevron-right" size={15} color={colors.mutedForeground} />
         </Pressable>
+
+        {/* Footer */}
+        <View style={styles.footer}>
+          <Text style={styles.footerText}>
+            v{Constants.expoConfig?.version ?? "1.0.0"}
+          </Text>
+          <Text style={styles.footerDot}>·</Text>
+          <Text style={styles.footerText}>Created by NSA</Text>
+        </View>
       </View>
 
       <LegalSheet visible={legalOpen} onClose={() => setLegalOpen(false)} />
@@ -229,6 +239,25 @@ function makeStyles(
       flex: 1,
       fontSize: 14,
       color: colors.mutedForeground,
+      fontFamily: "Inter_400Regular",
+    },
+    footer: {
+      flexDirection: "row",
+      alignItems: "center",
+      justifyContent: "center",
+      gap: 6,
+      marginTop: "auto" as any,
+      paddingTop: 24,
+      paddingBottom: Math.max(insets.bottom, 24),
+    },
+    footerText: {
+      fontSize: 12,
+      color: colors.border,
+      fontFamily: "Inter_400Regular",
+    },
+    footerDot: {
+      fontSize: 12,
+      color: colors.border,
       fontFamily: "Inter_400Regular",
     },
   });
