@@ -33,6 +33,24 @@ export interface Translations {
   months: string;
   year: (n: number) => string;
   locale: string;
+  legalNav: string;
+  legalTitle: string;
+  legalEditorTitle: string;
+  legalEditorName: string;
+  legalEditorType: string;
+  legalEditorTypeValue: string;
+  legalContact: string;
+  legalHostingTitle: string;
+  legalHostingText: string;
+  legalDataTitle: string;
+  legalDataText: string;
+  legalTrackingTitle: string;
+  legalTrackingServerLogs: string;
+  legalTrackingCookies: string;
+  legalTrackingAnalytics: string;
+  legalTrackingAds: string;
+  legalLawTitle: string;
+  legalLawText: string;
 }
 
 const fr: Translations = {
@@ -66,6 +84,27 @@ const fr: Translations = {
   months: "mois",
   year: (n) => (n > 1 ? "années" : "année"),
   locale: "fr-FR",
+  legalNav: "Mentions légales",
+  legalTitle: "Mentions légales",
+  legalEditorTitle: "Éditeur de l'application",
+  legalEditorName: "Nom",
+  legalEditorType: "Statut",
+  legalEditorTypeValue: "Personne physique",
+  legalContact: "Contact",
+  legalHostingTitle: "Hébergement",
+  legalHostingText:
+    "L'application Depuis est une application mobile distribuée via le Google Play Store. Elle ne dispose d'aucun serveur propre — toutes les données sont stockées localement sur votre appareil et n'transitent par aucun réseau.",
+  legalDataTitle: "Données personnelles",
+  legalDataText:
+    "Aucune donnée personnelle n'est collectée, transmise ou partagée. Les informations saisies (libellés, dates, couleurs) sont enregistrées uniquement dans la mémoire locale de votre appareil via AsyncStorage et ne quittent jamais celui-ci.",
+  legalTrackingTitle: "Collecte & traçabilité",
+  legalTrackingServerLogs: "Logs serveur / adresses IP",
+  legalTrackingCookies: "Cookies",
+  legalTrackingAnalytics: "Analytics / statistiques",
+  legalTrackingAds: "Publicités / trackers tiers",
+  legalLawTitle: "Droit applicable",
+  legalLawText:
+    "Les présentes mentions légales sont soumises au droit français. En cas de litige, les tribunaux français seront seuls compétents.",
 };
 
 const en: Translations = {
@@ -99,6 +138,27 @@ const en: Translations = {
   months: "months",
   year: (n) => (n > 1 ? "years" : "year"),
   locale: "en-US",
+  legalNav: "Legal notice",
+  legalTitle: "Legal Notice",
+  legalEditorTitle: "App Publisher",
+  legalEditorName: "Name",
+  legalEditorType: "Type",
+  legalEditorTypeValue: "Individual",
+  legalContact: "Contact",
+  legalHostingTitle: "Hosting",
+  legalHostingText:
+    "Depuis is a mobile application distributed via the Google Play Store. It has no dedicated server — all data is stored locally on your device and never transmitted over any network.",
+  legalDataTitle: "Personal Data",
+  legalDataText:
+    "No personal data is collected, transmitted or shared. Information you enter (labels, dates, colors) is saved only in your device's local storage via AsyncStorage and never leaves your device.",
+  legalTrackingTitle: "Tracking & Collection",
+  legalTrackingServerLogs: "Server logs / IP addresses",
+  legalTrackingCookies: "Cookies",
+  legalTrackingAnalytics: "Analytics / statistics",
+  legalTrackingAds: "Ads / third-party trackers",
+  legalLawTitle: "Applicable Law",
+  legalLawText:
+    "These legal notices are governed by French law. In the event of a dispute, French courts shall have sole jurisdiction.",
 };
 
 export const translations: Record<Locale, Translations> = { fr, en };

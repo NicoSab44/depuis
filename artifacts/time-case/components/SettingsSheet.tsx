@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+import React, { useMemo, useState } from "react";
 import {
   Modal,
   Platform,
@@ -14,6 +14,7 @@ import { LangPref, ThemePref } from "@/constants/i18n";
 import { useSettings } from "@/context/SettingsContext";
 import { useColors } from "@/hooks/useColors";
 import { useTranslation } from "@/hooks/useTranslation";
+import { LegalSheet } from "@/components/LegalSheet";
 
 interface Props {
   visible: boolean;
@@ -25,6 +26,7 @@ export function SettingsSheet({ visible, onClose }: Props) {
   const t = useTranslation();
   const insets = useSafeAreaInsets();
   const { themePref, langPref, setThemePref, setLangPref } = useSettings();
+  const [legalOpen, setLegalOpen] = useState(false);
 
   const styles = useMemo(() => makeStyles(colors, insets), [colors, insets]);
 
@@ -106,7 +108,19 @@ export function SettingsSheet({ visible, onClose }: Props) {
             })}
           </View>
         </View>
+
+        {/* Mentions légales */}
+        <Pressable
+          style={styles.legalBtn}
+          onPress={() => setLegalOpen(true)}
+        >
+          <Feather name="file-text" size={15} color={colors.mutedForeground} />
+          <Text style={styles.legalBtnText}>{t.legalNav}</Text>
+          <Feather name="chevron-right" size={15} color={colors.mutedForeground} />
+        </Pressable>
       </View>
+
+      <LegalSheet visible={legalOpen} onClose={() => setLegalOpen(false)} />
     </Modal>
   );
 }
@@ -198,6 +212,24 @@ function makeStyles(
       color: colors.primary,
       fontWeight: "600" as const,
       fontFamily: "Inter_600SemiBold",
+    },
+    legalBtn: {
+      flexDirection: "row",
+      alignItems: "center",
+      gap: 10,
+      marginHorizontal: 20,
+      paddingVertical: 14,
+      paddingHorizontal: 16,
+      borderRadius: 14,
+      borderWidth: 1,
+      borderColor: colors.border,
+      backgroundColor: colors.card,
+    },
+    legalBtnText: {
+      flex: 1,
+      fontSize: 14,
+      color: colors.mutedForeground,
+      fontFamily: "Inter_400Regular",
     },
   });
 }
