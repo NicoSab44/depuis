@@ -1,21 +1,19 @@
-import Constants from "expo-constants";
-import React, { useMemo, useState } from "react";
+import { Feather } from "@expo/vector-icons";
+import React, { useState } from "react";
 import {
-  Modal,
   Platform,
   Pressable,
   StyleSheet,
   Text,
   View,
 } from "react-native";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { Feather } from "@expo/vector-icons";
 
 import { LangPref, ThemePref } from "@/constants/i18n";
 import { useSettings } from "@/context/SettingsContext";
 import { useColors } from "@/hooks/useColors";
 import { useTranslation } from "@/hooks/useTranslation";
 import { LegalSheet } from "@/components/LegalSheet";
+import { ModalShell } from "@/components/ModalShell";
 
 interface Props {
   visible: boolean;
@@ -25,11 +23,10 @@ interface Props {
 export function SettingsSheet({ visible, onClose }: Props) {
   const colors = useColors();
   const t = useTranslation();
-  const insets = useSafeAreaInsets();
   const { themePref, langPref, setThemePref, setLangPref } = useSettings();
   const [legalOpen, setLegalOpen] = useState(false);
 
-  const styles = useMemo(() => makeStyles(colors, insets), [colors, insets]);
+  const styles = makeStyles(colors);
 
   const themeOptions: { value: ThemePref; label: string; icon: keyof typeof Feather.glyphMap }[] = [
     { value: "system", label: t.themeSystem, icon: "monitor" },
@@ -43,22 +40,8 @@ export function SettingsSheet({ visible, onClose }: Props) {
   ];
 
   return (
-    <Modal
-      visible={visible}
-      animationType="slide"
-      presentationStyle="pageSheet"
-      onRequestClose={onClose}
-    >
-      <View style={styles.container}>
-        <View style={styles.handle} />
-
-        <View style={styles.header}>
-          <Text style={styles.title}>{t.settingsTitle}</Text>
-          <Pressable onPress={onClose} style={styles.closeBtn} hitSlop={8}>
-            <Feather name="x" size={20} color={colors.mutedForeground} />
-          </Pressable>
-        </View>
-
+    <>
+      <ModalShell visible={visible} onClose={onClose} title={t.settingsTitle}>
         {/* Theme */}
         <View style={styles.section}>
           <Text style={styles.sectionLabel}>{t.theme}</Text>
@@ -76,9 +59,7 @@ export function SettingsSheet({ visible, onClose }: Props) {
                     size={16}
                     color={active ? colors.primary : colors.mutedForeground}
                   />
-                  <Text
-                    style={[styles.optionText, active && styles.optionTextActive]}
-                  >
+                  <Text style={[styles.optionText, active && styles.optionTextActive]}>
                     {opt.label}
                   </Text>
                 </Pressable>
@@ -99,9 +80,7 @@ export function SettingsSheet({ visible, onClose }: Props) {
                   style={[styles.optionBtn, active && styles.optionBtnActive]}
                   onPress={() => setLangPref(opt.value)}
                 >
-                  <Text
-                    style={[styles.optionText, active && styles.optionTextActive]}
-                  >
+                  <Text style={[styles.optionText, active && styles.optionTextActive]}>
                     {opt.label}
                   </Text>
                 </Pressable>
@@ -111,70 +90,20 @@ export function SettingsSheet({ visible, onClose }: Props) {
         </View>
 
         {/* Mentions légales */}
-        <Pressable
-          style={styles.legalBtn}
-          onPress={() => setLegalOpen(true)}
-        >
+        <Pressable style={styles.legalBtn} onPress={() => setLegalOpen(true)}>
           <Feather name="file-text" size={15} color={colors.mutedForeground} />
           <Text style={styles.legalBtnText}>{t.legalNav}</Text>
           <Feather name="chevron-right" size={15} color={colors.mutedForeground} />
         </Pressable>
-
-        {/* Footer */}
-        <View style={styles.footer}>
-          <Text style={styles.footerText}>
-            v{Constants.expoConfig?.version ?? "1.0.0"}
-          </Text>
-          <Text style={styles.footerDot}>·</Text>
-          <Text style={styles.footerText}>Created by NSA</Text>
-        </View>
-      </View>
+      </ModalShell>
 
       <LegalSheet visible={legalOpen} onClose={() => setLegalOpen(false)} />
-    </Modal>
+    </>
   );
 }
 
-function makeStyles(
-  colors: ReturnType<typeof useColors>,
-  insets: { top: number; bottom: number }
-) {
+function makeStyles(colors: ReturnType<typeof useColors>) {
   return StyleSheet.create({
-    container: {
-      flex: 1,
-      backgroundColor: colors.background,
-      paddingTop: (Constants.statusBarHeight ?? 24) + 16,
-      paddingBottom: Math.max(insets.bottom, 16),
-    },
-    handle: {
-      width: 36,
-      height: 4,
-      borderRadius: 2,
-      backgroundColor: colors.border,
-      alignSelf: "center",
-      marginBottom: 16,
-    },
-    header: {
-      flexDirection: "row",
-      alignItems: "center",
-      justifyContent: "space-between",
-      paddingHorizontal: 20,
-      marginBottom: 32,
-    },
-    title: {
-      fontSize: 20,
-      fontWeight: "700" as const,
-      color: colors.foreground,
-      fontFamily: "Inter_700Bold",
-    },
-    closeBtn: {
-      width: 32,
-      height: 32,
-      borderRadius: 16,
-      backgroundColor: colors.muted,
-      alignItems: "center",
-      justifyContent: "center",
-    },
     section: {
       paddingHorizontal: 20,
       marginBottom: 28,
@@ -239,24 +168,6 @@ function makeStyles(
       flex: 1,
       fontSize: 14,
       color: colors.mutedForeground,
-      fontFamily: "Inter_400Regular",
-    },
-    footer: {
-      flexDirection: "row",
-      alignItems: "center",
-      justifyContent: "center",
-      gap: 6,
-      marginTop: "auto" as any,
-      paddingVertical: 10,
-    },
-    footerText: {
-      fontSize: 12,
-      color: colors.border,
-      fontFamily: "Inter_400Regular",
-    },
-    footerDot: {
-      fontSize: 12,
-      color: colors.border,
       fontFamily: "Inter_400Regular",
     },
   });
