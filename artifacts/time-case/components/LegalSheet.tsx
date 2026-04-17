@@ -226,7 +226,7 @@ function makeStyles(
     container: {
       flex: 1,
       backgroundColor: colors.background,
-      paddingTop: insets.top + 16,
+      paddingTop: (Constants.statusBarHeight ?? 24) + 16,
     },
     handle: {
       width: 36,
@@ -331,8 +331,7 @@ function makeStyles(
       alignItems: "center",
       justifyContent: "center",
       gap: 6,
-      paddingTop: 12,
-      paddingBottom: Math.max(insets.bottom, 20),
+      paddingVertical: 10,
     },
     footerText: {
       fontSize: 12,
