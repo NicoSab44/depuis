@@ -93,7 +93,7 @@ const fr: Translations = {
   legalContact: "Contact",
   legalHostingTitle: "Hébergement",
   legalHostingText:
-    "L'application Depuis est une application mobile distribuée via le Google Play Store. Elle ne dispose d'aucun serveur propre — toutes les données sont stockées localement sur votre appareil et n'transitent par aucun réseau.",
+    "L'application Depuis est une application mobile distribuée via le Google Play Store. Elle ne dispose d'aucun serveur propre — toutes les données sont stockées localement sur votre appareil et ne transitent par aucun réseau.",
   legalDataTitle: "Données personnelles",
   legalDataText:
     "Aucune donnée personnelle n'est collectée, transmise ou partagée. Les informations saisies (libellés, dates, couleurs) sont enregistrées uniquement dans la mémoire locale de votre appareil via AsyncStorage et ne quittent jamais celui-ci.",

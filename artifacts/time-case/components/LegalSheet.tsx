@@ -1,4 +1,5 @@
 import { Feather } from "@expo/vector-icons";
+import Constants from "expo-constants";
 import * as Linking from "expo-linking";
 import React, { useMemo } from "react";
 import {
@@ -49,6 +50,7 @@ export function LegalSheet({ visible, onClose }: Props) {
           showsVerticalScrollIndicator={false}
         >
           {/* Éditeur */}
+
           <Section title={t.legalEditorTitle} colors={colors} styles={styles}>
             <Row label={t.legalEditorName} value="Nicolas SABOUREAU" styles={styles} colors={colors} />
             <Row label={t.legalEditorType} value={t.legalEditorTypeValue} styles={styles} colors={colors} />
@@ -115,6 +117,14 @@ export function LegalSheet({ visible, onClose }: Props) {
             <InfoBlock text={t.legalLawText} styles={styles} colors={colors} />
           </Section>
         </ScrollView>
+
+        <View style={styles.footer}>
+          <Text style={styles.footerText}>
+            v{Constants.expoConfig?.version ?? "1.0.0"}
+          </Text>
+          <Text style={styles.footerDot}>·</Text>
+          <Text style={styles.footerText}>Created by NSA</Text>
+        </View>
       </View>
     </Modal>
   );
@@ -315,6 +325,24 @@ function makeStyles(
       fontSize: 12,
       fontWeight: "600" as const,
       fontFamily: "Inter_600SemiBold",
+    },
+    footer: {
+      flexDirection: "row",
+      alignItems: "center",
+      justifyContent: "center",
+      gap: 6,
+      paddingTop: 12,
+      paddingBottom: Math.max(insets.bottom, 20),
+    },
+    footerText: {
+      fontSize: 12,
+      color: colors.border,
+      fontFamily: "Inter_400Regular",
+    },
+    footerDot: {
+      fontSize: 12,
+      color: colors.border,
+      fontFamily: "Inter_400Regular",
     },
   });
 }

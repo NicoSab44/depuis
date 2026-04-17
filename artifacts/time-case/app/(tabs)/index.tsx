@@ -1,4 +1,5 @@
 import * as Haptics from "expo-haptics";
+import Constants from "expo-constants";
 import React, { useMemo, useState } from "react";
 import {
   FlatList,
@@ -140,6 +141,14 @@ export default function HomeScreen() {
         visible={settingsOpen}
         onClose={() => setSettingsOpen(false)}
       />
+
+      <View style={[styles.footer, { paddingBottom: Math.max(bottomPad, 16) }]}>
+        <Text style={styles.footerText}>
+          v{Constants.expoConfig?.version ?? "1.0.0"}
+        </Text>
+        <Text style={styles.footerDot}>·</Text>
+        <Text style={styles.footerText}>Created by NSA</Text>
+      </View>
     </View>
   );
 }
@@ -234,6 +243,23 @@ function makeStyles(colors: ReturnType<typeof useColors>) {
       fontFamily: "Inter_400Regular",
       textAlign: "center",
       lineHeight: 22,
+    },
+    footer: {
+      flexDirection: "row",
+      alignItems: "center",
+      justifyContent: "center",
+      gap: 6,
+      paddingTop: 8,
+    },
+    footerText: {
+      fontSize: 12,
+      color: colors.border,
+      fontFamily: "Inter_400Regular",
+    },
+    footerDot: {
+      fontSize: 12,
+      color: colors.border,
+      fontFamily: "Inter_400Regular",
     },
   });
 }
