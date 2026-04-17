@@ -51,6 +51,10 @@ export interface Translations {
   legalTrackingAds: string;
   legalLawTitle: string;
   legalLawText: string;
+  offlineTitle: string;
+  offlineBody: string;
+  offlineReason: string;
+  offlineRetry: string;
 }
 
 const fr: Translations = {
@@ -105,6 +109,11 @@ const fr: Translations = {
   legalLawTitle: "Droit applicable",
   legalLawText:
     "Les présentes mentions légales sont soumises au droit français. En cas de litige, les tribunaux français seront seuls compétents.",
+  offlineTitle: "Connexion requise",
+  offlineBody: "Impossible de joindre le réseau.",
+  offlineReason:
+    "Depuis est diffusée sous forme d'application web. Une connexion internet est nécessaire pour la charger au premier lancement et recevoir les mises à jour. Vos données restent ensuite stockées uniquement sur votre appareil.",
+  offlineRetry: "Réessayer",
 };
 
 const en: Translations = {
@@ -159,6 +168,11 @@ const en: Translations = {
   legalLawTitle: "Applicable Law",
   legalLawText:
     "These legal notices are governed by French law. In the event of a dispute, French courts shall have sole jurisdiction.",
+  offlineTitle: "Connection required",
+  offlineBody: "Unable to reach the network.",
+  offlineReason:
+    "Depuis is delivered as a web application. An internet connection is required to load it on first launch and receive updates. Your data is then stored only on your device.",
+  offlineRetry: "Try again",
 };
 
 export const translations: Record<Locale, Translations> = { fr, en };

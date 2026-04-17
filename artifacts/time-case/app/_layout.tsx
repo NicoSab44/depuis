@@ -14,14 +14,25 @@ import { KeyboardProvider } from "react-native-keyboard-controller";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 
 import { ErrorBoundary } from "@/components/ErrorBoundary";
+import { OfflineScreen } from "@/components/OfflineScreen";
 import { SettingsProvider } from "@/context/SettingsContext";
 import { TimersProvider } from "@/context/TimersContext";
+import { useNetworkStatus } from "@/hooks/useNetworkStatus";
 
 SplashScreen.preventAutoHideAsync();
 
 const queryClient = new QueryClient();
 
-function RootLayoutNav() {
+function AppContent() {
+  const isConnected = useNetworkStatus();
+
+  if (isConnected === false) {
+    const retry = () => {
+      if (typeof window !== "undefined") window.location.reload();
+    };
+    return <OfflineScreen onRetry={retry} />;
+  }
+
   return (
     <Stack screenOptions={{ headerShown: false }}>
       <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
@@ -53,7 +64,7 @@ export default function RootLayout() {
             <KeyboardProvider>
               <SettingsProvider>
                 <TimersProvider>
-                  <RootLayoutNav />
+                  <AppContent />
                 </TimersProvider>
               </SettingsProvider>
             </KeyboardProvider>
