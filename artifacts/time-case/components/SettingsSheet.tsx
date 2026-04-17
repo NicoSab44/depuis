@@ -119,7 +119,7 @@ function makeStyles(
     container: {
       flex: 1,
       backgroundColor: colors.background,
-      paddingTop: 12,
+      paddingTop: insets.top + 16,
       paddingBottom: Math.max(insets.bottom, 24),
     },
     handle: {
