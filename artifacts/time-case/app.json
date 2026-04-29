@@ -13,6 +13,11 @@
       "resizeMode": "contain",
       "backgroundColor": "#E8EAF6"
     },
+    "extra": {
+      "eas": {
+        "projectId": "c6424ddb-dbc9-4ff6-953b-c8abff86bc7f"
+      }
+    },
     "ios": {
       "supportsTablet": false,
       "bundleIdentifier": "com.depuis.app"
